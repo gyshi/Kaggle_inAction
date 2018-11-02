@@ -23,7 +23,7 @@
 | Random Forest|0.9991|0.88| 
 
 具体的分析见：
-https://github.com/1360024032/Kaggle_inAction/tree/master/Digit_Recognize/Conclusion.md 
+https://github.com/1360024032/Kaggle_inAction/blob/master/Digit_Recognize/Conclusion%20.md
 
 
  
