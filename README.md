@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # digit recognizer
 
 我所采用的数据集为kaggle的竞赛Digit Recognizer的数据集，
@@ -21,5 +21,9 @@
 | KNN| 0.9808|0.97| 
 | DecisionTree| 1.0|0.81| 
 | Random Forest|0.9991|0.88| 
+
+具体的分析见：
+https://github.com/1360024032/Kaggle_inAction/tree/master/Digit_Recognize/Conclusion.md 
+
 
  
