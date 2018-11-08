@@ -25,7 +25,7 @@ if __name__ == "__main__":
     svc = svm.SVC(kernel='rbf', C=10)
     svc.fit(train_x, train_y)
 
-    y_pre = RF.predict(train_x)
+    y_pre = svc.predict(train_x)
     get_acc(y_pre, train_y,n_sam)
     scores = cross_val_score(svc, train_x, train_y, cv=5)
     print("Accuracy :%0.2f (+- %0.2f)" % (scores.mean(), scores.std() * 2))
