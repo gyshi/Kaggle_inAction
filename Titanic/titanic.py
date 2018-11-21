@@ -7,7 +7,7 @@ import sklearn
 import xgboost as xgb
 import seaborn as sns
 import matplotlib.pyplot as plt
-#%matplotlib inline
+
 import plotly.offline as py
 import plotly.graph_objs as go
 import plotly.tools as tls
@@ -50,7 +50,7 @@ for dataset in full_data:
     age_std = dataset['Age'].std()
     age_null_count = dataset['Age'].isnull().sum()
     age_null_random_list = np.random.randint(age_avg - age_std,age_avg + age_std , size = age_null_count)
-    dataset['Age'][np.isnan(dataset['Age'])] = age_null_random_list
+    dataset.loc[np.isnan(dataset['Age']),'Age'] = age_null_random_list
     dataset['Age'] = dataset['Age'].astype(int)
 
 train['CategoricalAge'] = pd.cut(train['Age'],5)
@@ -127,7 +127,7 @@ class SklearnHelper(object):
     def fit(self, x ,y):
         return self.clf.fit(x,y)
     def feature_importances(self,x,y):
-        print(self.clf.fit(x,y).feature_importances_)
+        return (self.clf.fit(x,y).feature_importances_)
 
 
 def get_oof(clf, x_train, y_train, x_test):
@@ -234,6 +234,7 @@ trace = go.Scatter(
     ),
     text = feature_dataframe['features'].values
 )
+##
 
 data = [trace]
 
@@ -373,6 +374,7 @@ layout= go.Layout(
     ),
     showlegend= False
 )
+
 fig = go.Figure(data=data, layout=layout)
 py.iplot(fig,filename='scatter2010')
 
@@ -455,4 +457,5 @@ predictions = gbm.predict(x_test)
 
 StackingSubmission = pd.DataFrame({ 'PassengerId': PassengerId,
                             'Survived': predictions })
-StackingSubmission.to_csv("StackingSubmission.csv", index=False)
+StackingSubmission.to_csv("out.csv", index=False)
+
